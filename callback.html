@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Autorizado</title>
+</head>
+<body style="font-family: Arial; padding: 40px;">
+    <h2>Autenticação TikTok Concluída!</h2>
+    <p>Copie o código azul abaixo e cole no terminal do seu robô:</p>
+    <h1 id="codigo" style="color: blue;">Buscando código...</h1>
+    
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        if (code) {
+            document.getElementById('codigo').innerText = code;
+        } else {
+            document.getElementById('codigo').innerText = "Nenhum código encontrado na URL.";
+            document.getElementById('codigo').style.color = "red";
+        }
+    </script>
+</body>
+</html>
