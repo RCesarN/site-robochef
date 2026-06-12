@@ -2,21 +2,249 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Autorizado</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autenticação Concluída – RoboChef</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0f;
+            color: #e2e8f0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            overflow: hidden;
+        }
+
+        /* Background glow */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(254,44,85,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 48px 40px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+            animation: fadeUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .icon-wrap {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fe2c55, #25f4ee);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 32px;
+            box-shadow: 0 8px 32px rgba(254,44,85,0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 8px 32px rgba(254,44,85,0.4); }
+            50%       { box-shadow: 0 8px 48px rgba(254,44,85,0.7); }
+        }
+
+        .icon-wrap.error {
+            background: linear-gradient(135deg, #ef4444, #f97316);
+            box-shadow: 0 8px 32px rgba(239,68,68,0.4);
+            animation: none;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .step-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .code-box {
+            position: relative;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(37,244,238,0.25);
+            border-radius: 12px;
+            padding: 18px 48px 18px 18px;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #25f4ee;
+            text-align: left;
+            line-height: 1.5;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .code-box:hover {
+            background: rgba(0,0,0,0.55);
+            border-color: rgba(37,244,238,0.5);
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 50%;
+            right: 12px;
+            transform: translateY(-50%);
+            background: rgba(37,244,238,0.12);
+            border: 1px solid rgba(37,244,238,0.3);
+            border-radius: 8px;
+            color: #25f4ee;
+            font-size: 18px;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .copy-btn:hover { background: rgba(37,244,238,0.22); }
+        .copy-btn:active { transform: translateY(-50%) scale(0.9); }
+
+        .toast {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: #4ade80;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s;
+            margin-bottom: 28px;
+            min-height: 20px;
+        }
+
+        .toast.show { opacity: 1; }
+
+        .divider {
+            height: 1px;
+            background: rgba(255,255,255,0.06);
+            margin: 8px 0 24px;
+        }
+
+        .hint {
+            font-size: 12px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .brand {
+            margin-top: 32px;
+            font-size: 12px;
+            color: #334155;
+            letter-spacing: 0.5px;
+        }
+
+        .brand span {
+            background: linear-gradient(90deg, #fe2c55, #25f4ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+
+        .error-msg {
+            background: rgba(239,68,68,0.1);
+            border: 1px solid rgba(239,68,68,0.3);
+            border-radius: 12px;
+            padding: 16px;
+            color: #fca5a5;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+    </style>
 </head>
-<body style="font-family: Arial; padding: 40px;">
-    <h2>Autenticação TikTok Concluída!</h2>
-    <p>Copie o código azul abaixo e cole no terminal do seu robô:</p>
-    <h1 id="codigo" style="color: blue;">Buscando código...</h1>
-    
+<body>
+    <div class="card" id="card">
+        <!-- Content injected by JS -->
+    </div>
+
     <script>
+        const card = document.getElementById('card');
         const urlParams = new URLSearchParams(window.location.search);
         const code = urlParams.get('code');
+
         if (code) {
-            document.getElementById('codigo').innerText = code;
+            card.innerHTML = `
+                <div class="icon-wrap">✓</div>
+                <h1>Autenticação Concluída!</h1>
+                <p class="subtitle">O TikTok autorizou o acesso com sucesso.<br>Copie o código abaixo e cole no terminal.</p>
+
+                <p class="step-label">Código de autorização</p>
+                <div class="code-box" id="codeBox" onclick="copyCode()" title="Clique para copiar">
+                    <span id="codeText">${code}</span>
+                    <button class="copy-btn" id="copyBtn" title="Copiar">⎘</button>
+                </div>
+
+                <div class="toast" id="toast">✓ Copiado para a área de transferência</div>
+
+                <div class="divider"></div>
+                <p class="hint">Cole este código no terminal onde o script <strong>tiktok_auth.py</strong> está aguardando.<br>O código expira em alguns minutos.</p>
+                <p class="brand">RoboChef <span>@robochefbrasil</span></p>
+            `;
         } else {
-            document.getElementById('codigo').innerText = "Nenhum código encontrado na URL.";
-            document.getElementById('codigo').style.color = "red";
+            card.innerHTML = `
+                <div class="icon-wrap error">✕</div>
+                <h1>Nenhum código encontrado</h1>
+                <p class="subtitle">Esta página deve ser acessada via redirecionamento do TikTok.<br>Tente iniciar o processo de autenticação novamente.</p>
+                <div class="error-msg">Parâmetro <code>code</code> não encontrado na URL de retorno.</div>
+                <p class="brand">RoboChef <span>@robochefbrasil</span></p>
+            `;
+        }
+
+        function copyCode() {
+            const text = document.getElementById('codeText')?.innerText;
+            if (!text) return;
+            navigator.clipboard.writeText(text).then(() => {
+                const toast = document.getElementById('toast');
+                const btn   = document.getElementById('copyBtn');
+                if (toast) { toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2500); }
+                if (btn)   { btn.innerText = '✓'; setTimeout(() => btn.innerText = '⎘', 2500); }
+            });
         }
     </script>
 </body>
