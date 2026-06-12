@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade – RoboChef Publicador</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f0f0f;
+            color: #e0e0e0;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 48px 24px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        header .logo { font-size: 2rem; margin-bottom: 8px; }
+        header h1 { font-size: 1.6rem; font-weight: 700; color: #fff; }
+        header p { color: #9ca3af; font-size: 0.9rem; margin-top: 8px; }
+        main {
+            max-width: 780px;
+            margin: 48px auto;
+            padding: 0 24px 80px;
+        }
+        .card {
+            background: #1a1a1a;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 40px;
+        }
+        h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #34d399;
+            margin: 32px 0 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(52,211,153,0.2);
+        }
+        h2:first-child { margin-top: 0; }
+        p { margin-bottom: 14px; color: #c9d1d9; }
+        ul { margin: 0 0 14px 20px; color: #c9d1d9; }
+        li { margin-bottom: 6px; }
+        .highlight {
+            background: rgba(52,211,153,0.08);
+            border-left: 3px solid #34d399;
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+            font-size: 0.9rem;
+            color: #6ee7b7;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0 24px;
+            font-size: 0.9rem;
+        }
+        th {
+            background: rgba(52,211,153,0.1);
+            color: #34d399;
+            font-weight: 600;
+            padding: 10px 14px;
+            text-align: left;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        td {
+            padding: 10px 14px;
+            border: 1px solid rgba(255,255,255,0.06);
+            color: #c9d1d9;
+            vertical-align: top;
+        }
+        tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+        footer {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.8rem;
+            margin-top: 48px;
+        }
+        footer a { color: #34d399; text-decoration: none; }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">🔒</div>
+    <h1>Política de Privacidade</h1>
+    <p>RoboChef Publicador &nbsp;·&nbsp; Última atualização: Junho de 2026</p>
+</header>
+<main>
+    <div class="card">
+
+        <h2>1. Introdução</h2>
+        <p>Esta Política de Privacidade descreve como o <strong>RoboChef Publicador</strong> trata as informações no contexto de sua integração com a API do TikTok. O Aplicativo é uma ferramenta de automação pessoal, sem fins comerciais, usada exclusivamente pelo criador da conta <strong>@robochefbrasil</strong>.</p>
+
+        <div class="highlight">
+            O RoboChef Publicador <strong>não coleta, armazena nem compartilha dados pessoais de terceiros</strong>. Todos os dados processados pertencem exclusivamente ao próprio desenvolvedor/usuário da ferramenta.
+        </div>
+
+        <h2>2. Dados Coletados</h2>
+        <p>O Aplicativo processa apenas os seguintes dados mínimos necessários para seu funcionamento:</p>
+        <table>
+            <tr>
+                <th>Dado</th>
+                <th>Finalidade</th>
+                <th>Armazenamento</th>
+            </tr>
+            <tr>
+                <td>Access Token OAuth2</td>
+                <td>Autenticação com a API do TikTok</td>
+                <td>Local (arquivo JSON protegido)</td>
+            </tr>
+            <tr>
+                <td>Refresh Token OAuth2</td>
+                <td>Renovação automática do acesso</td>
+                <td>Local (arquivo JSON protegido)</td>
+            </tr>
+            <tr>
+                <td>Client Key / Secret</td>
+                <td>Identificação do aplicativo na API</td>
+                <td>Local (arquivo JSON protegido)</td>
+            </tr>
+        </table>
+        <p>Esses dados são armazenados <strong>exclusivamente no dispositivo local</strong> do desenvolvedor e nunca são transmitidos a servidores de terceiros além da API oficial do TikTok.</p>
+
+        <h2>3. Dados do TikTok Acessados</h2>
+        <p>Por meio dos escopos autorizados via OAuth2, o Aplicativo acessa:</p>
+        <ul>
+            <li><strong>user.info.basic:</strong> Nome de exibição e avatar público da conta (para validação de login)</li>
+            <li><strong>video.upload:</strong> Permissão para enviar vídeos como rascunho para a conta do criador</li>
+            <li><strong>video.publish:</strong> Permissão para publicar vídeos diretamente no perfil do criador</li>
+        </ul>
+        <p>Nenhuma dessas informações é compartilhada com terceiros ou utilizada para qualquer finalidade além da publicação automatizada de conteúdo.</p>
+
+        <h2>4. Compartilhamento de Dados</h2>
+        <p>O RoboChef Publicador <strong>não compartilha nenhum dado</strong> com terceiros. As únicas comunicações de rede realizadas pelo Aplicativo são:</p>
+        <ul>
+            <li>Requisições para os endpoints oficiais da TikTok API (<code>open.tiktokapis.com</code>)</li>
+            <li>Requisições de autenticação para <code>www.tiktok.com/v2/auth/authorize/</code></li>
+        </ul>
+
+        <h2>5. Retenção de Dados</h2>
+        <p>Os tokens de autenticação são mantidos localmente enquanto forem necessários para o funcionamento do Aplicativo. O usuário pode revogar o acesso a qualquer momento diretamente nas configurações de privacidade da sua conta TikTok (<strong>Configurações → Segurança → Aplicativos autorizados</strong>).</p>
+
+        <h2>6. Segurança</h2>
+        <p>Os arquivos de credenciais são armazenados localmente no dispositivo do desenvolvedor, com acesso restrito ao usuário do sistema operacional. O Aplicativo não transmite credenciais por redes não seguras.</p>
+
+        <h2>7. Direitos do Usuário (LGPD)</h2>
+        <p>Em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018), o usuário tem direito a:</p>
+        <ul>
+            <li>Acessar os dados armazenados localmente a qualquer momento</li>
+            <li>Solicitar a exclusão dos tokens de autenticação</li>
+            <li>Revogar o acesso do Aplicativo à conta TikTok a qualquer momento</li>
+        </ul>
+
+        <h2>8. Cookies e Rastreamento</h2>
+        <p>O RoboChef Publicador <strong>não utiliza cookies</strong> e não realiza nenhuma forma de rastreamento de usuários. Este site (GitHub Pages) tampouco coleta dados de visitantes.</p>
+
+        <h2>9. Alterações nesta Política</h2>
+        <p>Esta Política pode ser atualizada periodicamente. Alterações significativas serão refletidas na data de "Última atualização" no topo desta página.</p>
+
+        <h2>10. Contato</h2>
+        <p>Para exercer seus direitos ou esclarecer dúvidas sobre esta Política de Privacidade, entre em contato pelo perfil do TikTok: <strong>@robochefbrasil</strong>.</p>
+
+    </div>
+    <footer>
+        <p>© 2026 RoboChef Publicador &nbsp;·&nbsp; <a href="/site-robochef/">Início</a> &nbsp;·&nbsp; <a href="/site-robochef/termos-de-uso.html">Termos de Uso</a></p>
+    </footer>
+</main>
+</body>
+</html>
